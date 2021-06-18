@@ -11,3 +11,8 @@ source-repository-package
   type: git
   location: https://github.com/jgm/citeproc
   tag: d201ddc812b1550d70c3e448eec6d9c3af72d96b
+
+source-repository-package
+  type: git
+  location: https://github.com/argent0/pandoc-types
+  tag: be85d6fe51d356b77d222a7b274381f845aa3c71

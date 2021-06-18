@@ -15,6 +15,8 @@ extra-deps:
   commit: 428c26d5303cf7a2b1051fe1ffd9aafe9ba71c81
 - git: https://github.com/jgm/citeproc
   commit: d201ddc812b1550d70c3e448eec6d9c3af72d96b
+- git: https://github.com/argent0/pandoc-types
+  commit: be85d6fe51d356b77d222a7b274381f845aa3c71
 ghc-options:
    "$locals": -fhide-source-paths -Wno-missing-home-modules
 resolver: lts-18.0
