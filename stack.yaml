@@ -18,7 +18,7 @@ extra-deps:
 - commonmark-extensions-0.2.1.2
 - commonmark-pandoc-0.2.1
 - git: https://github.com/argent0/pandoc-types
-  commit: 757cca3765fe59c45e810f9c36eb1c394df3d35e
+  commit: 701f101e4608663074b67c83b2c687433e1f7ae4
 ghc-options:
    "$locals": -fhide-source-paths -Wno-missing-home-modules
 resolver: lts-18.0

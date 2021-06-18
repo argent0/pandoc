@@ -2,3 +2,8 @@ packages: pandoc.cabal
 tests: True
 flags: +embed_data_files
 
+source-repository-package
+  type: git
+  location: https://github.com/argent0/pandoc-types/tree/figures-gsoc
+  tag: 701f101e4608663074b67c83b2c687433e1f7ae4
+  subdir: pandoc-types
