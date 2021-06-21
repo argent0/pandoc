@@ -713,8 +713,8 @@ blockToHtml opts (Para [Image attr@(_,classes,_) txt (src,tit)])
          inlineToHtml opts (Image attr txt (src, tit))
        _ -> figure opts attr txt (src, tit)
 -- title beginning with fig: indicates that the image is a figure
-blockToHtml opts (Para [Image attr txt (s,T.stripPrefix "fig:" -> Just tit)]) =
-  figure opts attr txt (s,tit)
+blockToHtml opts (SimpleFigure attr caption (src, title)) =
+  figure opts attr caption (src, title)
 blockToHtml opts (Para lst) = do
   contents <- inlineListToHtml opts lst
   case contents of
