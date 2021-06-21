@@ -91,8 +91,7 @@ blockToMediaWiki (Div attrs bs) = do
 blockToMediaWiki (Plain inlines) =
   inlineListToMediaWiki inlines
 
--- title beginning with fig: indicates that the image is a figure
-blockToMediaWiki (Para [Image attr txt (src,T.stripPrefix "fig:" -> Just tit)]) = do
+blockToMediaWiki (SimpleFigure attr txt src tit) = do
   capt <- inlineListToMediaWiki txt
   img  <- imageToMediaWiki attr
   let opt = if T.null tit
