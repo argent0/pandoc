@@ -7,16 +7,9 @@ flags:
 packages:
 - '.'
 extra-deps:
-- haddock-library-1.10.0
-- hslua-1.3.0
-- hslua-module-path-0.1.0
-- jira-wiki-markup-1.4.0
-- random-1.2.0
-- unicode-collation-0.1.3
-- citeproc-0.4.0.1
-- commonmark-0.2
-- commonmark-extensions-0.2.1.2
-- commonmark-pandoc-0.2.1
+- commonmark-0.2.1
+- skylighting-core-0.10.5.2
+- skylighting-0.10.5.2
 - git: https://github.com/argent0/pandoc-types
   commit: 701f101e4608663074b67c83b2c687433e1f7ae4
 ghc-options:
