@@ -365,14 +365,13 @@ blockToMarkdown' opts (Plain inlines) = do
                   _ -> inlines
   contents <- inlineListToMarkdown opts inlines'
   return $ contents <> cr
--- title beginning with fig: indicates figure
-blockToMarkdown' opts (Para [Image attr alt (src,tgt@(T.stripPrefix "fig:" -> Just tit))])
+blockToMarkdown' opts (SimpleFigure attr alt src tit)
   | isEnabled Ext_raw_html opts &&
     not (isEnabled Ext_link_attributes opts || isEnabled Ext_attributes opts) &&
     attr /= nullAttr = -- use raw HTML
     (<> blankline) . literal . T.strip <$>
       writeHtml5String opts{ writerTemplate = Nothing }
-        (Pandoc nullMeta [Para [Image attr alt (src,tgt)]])
+        (Pandoc nullMeta [SimpleFigure attr alt src tit])
   | otherwise = blockToMarkdown opts (Para [Image attr alt (src,tit)])
 blockToMarkdown' opts (Para inlines) =
   (<> blankline) `fmap` blockToMarkdown opts (Plain inlines)
