@@ -188,7 +188,7 @@ blockToDocbook opts (Div (id',"section":_,_) (Header lvl (_,_,attrs) ils : xs)) 
       -- standalone documents will include them in the template.
                  then [("xmlns", "http://docbook.org/ns/docbook"),("xmlns:xlink", "http://www.w3.org/1999/xlink")]
                  else []
-      
+
       -- Populate miscAttr with Header.Attr.attributes, filtering out non-valid DocBook section attributes, id, and xml:id
       miscAttr = filter (isSectionAttr version) attrs
       attribs = nsAttr <> idAttr <> miscAttr
@@ -233,7 +233,7 @@ blockToDocbook _ h@Header{} = do
   return empty
 blockToDocbook opts (Plain lst) = inlinesToDocbook opts lst
 -- title beginning with fig: indicates that the image is a figure
-blockToDocbook opts (Para [Image attr txt (src,T.stripPrefix "fig:" -> Just _)]) = do
+blockToDocbook opts (SimpleFigure attr txt src _) = do
   alt <- inlinesToDocbook opts txt
   let capt = if null txt
                 then empty
