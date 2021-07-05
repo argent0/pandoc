@@ -931,8 +931,8 @@ environments = M.union (tableEnvironments blocks inline) $
    , ("letter", env "letter" letterContents)
    , ("minipage", env "minipage" $
           skipopts *> spaces *> optional braced *> spaces *> blocks)
-   , ("figure", env "figure" $ skipopts *> figure)
-   , ("subfigure", env "subfigure" $ skipopts *> tok *> figure)
+   , ("figure", env "figure" $ skipopts *> Text.Pandoc.Readers.LaTeX.figure)
+   , ("subfigure", env "subfigure" $ skipopts *> tok *> Text.Pandoc.Readers.LaTeX.figure)
    , ("center", divWith ("", ["center"], []) <$> env "center" blocks)
    , ("quote", blockQuote <$> env "quote" blocks)
    , ("quotation", blockQuote <$> env "quotation" blocks)
