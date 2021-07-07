@@ -171,6 +171,7 @@ pushBlock = \case
   RawBlock f cs            -> pushViaConstructor "RawBlock" f cs
   Table attr blkCapt specs thead tbody tfoot ->
     pushViaConstructor "Table" blkCapt specs thead tbody tfoot attr
+  Figure {} -> undefined -- pushViaConstructor "Figure" capt body attr
 
 -- | Return the value at the given index as block if possible.
 peekBlock :: StackIndex -> Lua Block

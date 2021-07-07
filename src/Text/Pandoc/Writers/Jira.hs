@@ -114,6 +114,7 @@ toJiraBlocks blocks = do
                        Just header -> header : bodyRows
                        Nothing     -> bodyRows
           return $ Jira.Table rows
+        Figure {}            -> return mempty
   jiraBlocks <- mapM convert blocks
   return $ mconcat jiraBlocks
 

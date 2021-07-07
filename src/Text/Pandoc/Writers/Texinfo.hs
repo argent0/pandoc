@@ -259,6 +259,8 @@ blockToTexinfo (Table _ blkCapt specs thead tbody tfoot) = do
                    inCmd "caption" captionText $$
                    text "@end float"
 
+blockToTexinfo (Figure {}) = return empty
+
 tableHeadToTexinfo :: PandocMonad m
                    => [Alignment]
                    -> [[Block]]

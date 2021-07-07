@@ -993,6 +993,7 @@ blockToHtml opts (DefinitionList lst) = do
   defList opts contents
 blockToHtml opts (Table attr caption colspecs thead tbody tfoot) =
   tableToHtml opts (Ann.toTable attr caption colspecs thead tbody tfoot)
+blockToHtml _ (Figure {}) = return mempty
 
 tableToHtml :: PandocMonad m
             => WriterOptions

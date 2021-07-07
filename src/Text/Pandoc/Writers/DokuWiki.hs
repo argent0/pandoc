@@ -221,6 +221,8 @@ blockToDokuWiki opts x@(OrderedList attribs items) = do
                       (mapM (orderedListItemToDokuWiki opts) items)
         return $ vcat contents <> if T.null indent then "\n" else ""
 
+blockToDokuWiki _ (Figure {}) = return ""
+
 -- TODO Need to decide how to make definition lists work on dokuwiki - I don't think there
 --      is a specific representation of them.
 -- TODO This creates double '; ; ' if there is a bullet or ordered list inside a definition list

@@ -205,6 +205,8 @@ blockToMediaWiki x@(DefinitionList items) = do
         contents <- local (\s -> s { listLevel = listLevel s <> ";" }) $ mapM definitionListItemToMediaWiki items
         return $ vcat contents <> if null lev then "\n" else ""
 
+blockToMediaWiki (Figure {}) = return ""
+
 -- Auxiliary functions for lists:
 
 -- | Convert ordered list attributes to HTML attribute string

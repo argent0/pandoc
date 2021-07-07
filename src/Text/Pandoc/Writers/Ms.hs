@@ -300,6 +300,7 @@ blockToMs opts (DefinitionList items) = do
   contents <- mapM (definitionListItemToMs opts) items
   setFirstPara
   return (vcat contents)
+blockToMs _ (Figure {}) = return empty
 
 -- | Convert bullet list item (list of blocks) to ms.
 bulletListItemToMs :: PandocMonad m => WriterOptions -> [Block] -> MS m (Doc Text)

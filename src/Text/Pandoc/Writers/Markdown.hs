@@ -589,6 +589,7 @@ blockToMarkdown' opts (OrderedList (start,sty,delim) items) = do
 blockToMarkdown' opts (DefinitionList items) = do
   contents <- inList $ mapM (definitionListItemToMarkdown opts) items
   return $ mconcat contents <> blankline
+blockToMarkdown' _ (Figure {}) = return empty
 
 inList :: Monad m => MD m a -> MD m a
 inList p = local (\env -> env {envInList = True}) p

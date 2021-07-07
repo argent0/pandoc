@@ -321,6 +321,7 @@ blockToDocbook opts (Table _ blkCapt specs thead tbody tfoot) = do
   return $ inTagsIndented tableType $ captionDoc $$
         inTags True "tgroup" [("cols", tshow (length aligns))] (
          coltags $$ head' $$ body')
+blockToDocbook _ (Figure {}) = return empty
 
 hasLineBreaks :: [Inline] -> Bool
 hasLineBreaks = getAny . query isLineBreak . walk removeNote

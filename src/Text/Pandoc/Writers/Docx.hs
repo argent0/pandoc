@@ -939,6 +939,7 @@ blockToOpenXML' opts (DefinitionList items) = do
   l <- concat `fmap` mapM (definitionListItemToOpenXML opts) items
   setFirstPara
   return l
+blockToOpenXML' _ (Figure {}) = return []
 
 definitionListItemToOpenXML  :: (PandocMonad m)
                              => WriterOptions -> ([Inline],[[Block]])

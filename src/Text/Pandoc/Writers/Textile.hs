@@ -242,6 +242,8 @@ blockToTextile opts (DefinitionList items) = do
   contents <- withUseTags $ mapM (definitionListItemToTextile opts) items
   return $ "<dl>\n" <> vcat contents <> "\n</dl>\n"
 
+blockToTextile _ (Figure {}) = return ""
+
 -- Auxiliary functions for lists:
 
 -- | Convert ordered list attributes to HTML attribute string

@@ -355,6 +355,8 @@ blockToRST (DefinitionList items) = do
   -- ensure that sublists have preceding blank line
   return $ blankline $$ vcat contents $$ blankline
 
+blockToRST (Figure {}) = return empty
+
 -- | Convert bullet list item (list of blocks) to RST.
 bulletListItemToRST :: PandocMonad m => [Block] -> RST m (Doc Text)
 bulletListItemToRST items = do

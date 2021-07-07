@@ -183,6 +183,7 @@ blockToMan opts (OrderedList attribs items) = do
 blockToMan opts (DefinitionList items) = do
   contents <- mapM (definitionListItemToMan opts) items
   return (vcat contents)
+blockToMan _ (Figure {}) = return empty
 
 -- | Convert bullet list item (list of blocks) to man.
 bulletListItemToMan :: PandocMonad m => WriterOptions -> [Block] -> StateT WriterState m (Doc Text)
