@@ -179,7 +179,7 @@ blockToZimWiki opts (DefinitionList items) = do
   contents <- mapM (definitionListItemToZimWiki opts) items
   return $ vcat contents
 
-blockToZimWiki _ (Figure {}) = return mempty
+blockToZimWiki _ (Figure {}) = return ""
 
 definitionListItemToZimWiki :: PandocMonad m
                             => WriterOptions
