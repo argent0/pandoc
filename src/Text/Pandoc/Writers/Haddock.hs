@@ -149,7 +149,7 @@ blockToHaddock opts (OrderedList (start,_,delim) items) = do
 blockToHaddock opts (DefinitionList items) = do
   contents <- mapM (definitionListItemToHaddock opts) items
   return $ vcat contents <> blankline
-blockToHaddock _ (Figure {}) = return mempty
+blockToHaddock _ (Figure {}) = return empty
 
 -- | Convert bullet list item (list of blocks) to haddock
 bulletListItemToHaddock :: PandocMonad m
