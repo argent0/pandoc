@@ -245,13 +245,15 @@ blockToTextile opts (DefinitionList items) = do
 blockToTextile opts (Figure attr (Caption _ caption)  body) = do
   let startTag = render Nothing $ tagWithAttrs "figure" attr
   let endTag = "</figure>"
-  captionInlines <- inlineListToTextile opts $ blocksToInlines caption
+  let captionInlines = blocksToInlines caption
+  captionMarkup <- if null captionInlines
+                      then return ""
+                      else ((<> "\n\n</figcaption>\n\n") .  ("<figcaption>\n\n" <>)) <$>
+                          inlineListToTextile opts (blocksToInlines caption)
   contents <- blockListToTextile opts body
   return $ startTag <> "\n\n" <>
-    "<figcaption>\n\n" <>
-    captionInlines <>
-    "\n\n" <>
-    "</figcaption>\n\n" <> contents <> "\n\n" <> endTag <> "\n"
+    captionMarkup <>
+    contents <> "\n\n" <> endTag <> "\n"
 
 -- Auxiliary functions for lists:
 
