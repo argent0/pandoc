@@ -221,7 +221,8 @@ blockToDokuWiki opts x@(OrderedList attribs items) = do
                       (mapM (orderedListItemToDokuWiki opts) items)
         return $ vcat contents <> if T.null indent then "\n" else ""
 
-blockToDokuWiki _ (Figure {}) = return ""
+blockToDokuWiki opts (Figure attrs _ body) =
+  blockToDokuWiki opts $ Div attrs body
 
 -- TODO Need to decide how to make definition lists work on dokuwiki - I don't think there
 --      is a specific representation of them.
