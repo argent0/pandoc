@@ -267,7 +267,7 @@ blockToConTeXt (Table _ blkCapt specs thead tbody tfoot) = do
         then "location=none"
         else "title=" <> braces captionText
       ) $$ body $$ "\\stopplacetable" <> blankline
-blockToConTeXt (Figure {}) = return empty
+blockToConTeXt (Figure attr _ body) = blockToConTeXt $ Div attr body
 
 tableToConTeXt :: PandocMonad m
                => Tabl -> Doc Text -> [Doc Text] -> WM m (Doc Text)
