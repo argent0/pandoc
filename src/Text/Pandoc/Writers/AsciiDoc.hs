@@ -186,8 +186,7 @@ blockToAsciiDoc opts (Header level (ident,_,_) inlines) = do
   return $ identifier $$
            nowrap (text (replicate (level + 1) '=') <> space <> contents) <>
            blankline
-blockToAsciiDoc _ (Figure {}) = return empty
-
+blockToAsciiDoc opts (Figure attr _ body) = blockToAsciiDoc opts $ Div attr body
 blockToAsciiDoc _ (CodeBlock (_,classes,_) str) = return $ flush (
   if null classes
      then "...." $$ literal str $$ "...."
