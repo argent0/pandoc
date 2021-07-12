@@ -373,7 +373,20 @@ blockToJATS _ b@(RawBlock f str)
 blockToJATS _ HorizontalRule = return empty -- not semantic
 blockToJATS opts (Table attr caption colspecs thead tbody tfoot) =
   tableToJATS opts (Ann.toTable attr caption colspecs thead tbody tfoot)
-blockToJATS _ (Figure {}) = return empty
+blockToJATS opts (Figure (ident, _, kvs) (Caption _ captBody) body) = do
+  captResult <- blocksToJATS opts captBody
+
+  let capt = if null captResult
+                then empty
+                else inTagsSimple "caption" captResult
+
+  let attr = [("id", escapeNCName ident) | not (T.null ident)] ++
+             [(k,v) | (k,v) <- kvs, k `elem` ["fig-type", "orientation",
+                                              "position", "specific-use"]]
+
+  bodyResult <- blocksToJATS opts body
+
+  return $ inTags True "fig" attr $ capt $$ bodyResult
 
 -- | Convert a list of inline elements to JATS.
 inlinesToJATS :: PandocMonad m => WriterOptions -> [Inline] -> JATS m (Doc Text)
