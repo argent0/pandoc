@@ -122,7 +122,7 @@ blockToXWiki (DefinitionList items) = do
   contents <- local (\s -> s { listLevel = listLevel s <> ";" }) $ mapM definitionListItemToMediaWiki items
   return $ vcat contents <> if Text.null lev then "\n" else ""
 
-blockToXWiki (Figure {}) = return ""
+blockToXWiki (Figure attr _ body) = blockToXWiki $ Div attr body
 
 -- TODO: support more features
 blockToXWiki (Table _ blkCapt specs thead tbody tfoot) = do
